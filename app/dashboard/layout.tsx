@@ -15,17 +15,21 @@ export default function RootLayout({
 }>) {
     return (
 
-        <div className={`${inter.className} max-w-7xl  mx-auto border-2 bg-[#e0e0e6] flex gap-2 flex-row p-1  h-screen overflow-hidden`}>
+        <html>
+            <body className={inter.className}>
+                <div className={`${inter.className} max-w-7xl  mx-auto border-2 bg-[#e0e0e6] flex gap-2 flex-row p-1  h-screen overflow-hidden`}>
 
-            <Sidenav />
+                    <Sidenav />
 
-            {/* right section  */}
-            <div className='p-2 flex-grow bg-white border-2 rounded-md'>
-                {children}
-            </div>
+                    {/* right section  */}
+                    <div className='p-2 flex-grow bg-white border-2 rounded-md'>
+                        {children}
+                    </div>
 
 
-        </div>
+                </div>
+            </body>
+        </html>
 
     );
 }

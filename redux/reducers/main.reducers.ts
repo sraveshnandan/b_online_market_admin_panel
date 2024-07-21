@@ -1,4 +1,4 @@
-import { IBanners, ICategory, IShop, IUser } from "@/types";
+import { IBanners, ICategory, IOrder, IProduct, IShop, IUser } from "@/types";
 import { api_key, api_url } from "@/utils";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -11,8 +11,8 @@ type initialStateType = {
     categories: ICategory[],
     shops: IShop[],
     users: IUser[],
-    products: [],
-    orders: [],
+    products: IProduct[],
+    orders: IOrder[],
     isLoading: boolean,
     isError: boolean,
     errMsg: string,
@@ -36,15 +36,16 @@ const initialState: initialStateType = {
 const fetchAllData = createAsyncThunk("fetchAllData", async (params, thunkApi) => {
     try {
 
-        const res = await fetch(`${api_url}/getAllData?key?=${api_key}`);
+        const res = await fetch(`https://bom-api-1-0-1.onrender.com/api/v1/getAllData?key=com.sravesh.bom`);
 
         const apiRes = await res.json();
 
         console.log("fetchAllData fn exec successfully.");
+        console.log(apiRes)
 
         return apiRes.result
     } catch (error: any) {
-        console.log("error occured while fetching all data.")
+        console.log("error occured while fetching all data.", error)
         return thunkApi.rejectWithValue(error.message || "Something went wrong.")
     }
 

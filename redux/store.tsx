@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
 import mainReducers from "./reducers/main.reducers";
-import { persistReducer, persistStore } from "redux-persist";
+import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
+import storage from "@/ssr-safe-storage";
 
 const persistConfig = {
     key: "root",
     storage,
-    whiteList: ["main"]
+
 }
 
 
@@ -17,15 +17,21 @@ const rooReducer = combineReducers({
 
 const persistedReducers = persistReducer(persistConfig, rooReducer)
 
-const store = configureStore({
-    reducer: persistedReducers,
+export const makeStore = () => {
+    return configureStore({
+        reducer: persistedReducers,
 
-})
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                },
+            }),
+    });
+};
 
-const persistor = persistStore(store)
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<typeof rooReducer>;
 
 
-export {
-    store,
-    persistor
-}
+

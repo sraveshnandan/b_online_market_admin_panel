@@ -3,7 +3,7 @@
 
 
 // interface for Image object 
-interface Iimage {
+export interface Iimage {
     public_id: string,
     url: string
 }
