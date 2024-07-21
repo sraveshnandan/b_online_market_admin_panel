@@ -16,7 +16,7 @@ const DashboardPage = () => {
             dispatch(fetchAllData() as any)
         }
         toast.success("hi")
-    }, [])
+    }, [banners.length])
 
     return (
         <div className=''>
