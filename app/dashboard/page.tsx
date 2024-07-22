@@ -15,7 +15,7 @@ const DashboardPage = () => {
         if (!banners.length) {
             dispatch(fetchAllData() as any)
         }
-        toast.success("hi")
+        toast.success("Welcome to admin pannel.")
     }, [banners.length])
 
     return (

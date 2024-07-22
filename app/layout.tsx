@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className} max-w-7xl mx-auto`}>
         <ReduxProvider>
           {children}
-          <Toaster richColors={true} />
+          <Toaster position="top-center" richColors={true} />
         </ReduxProvider>
       </body>
     </html>
