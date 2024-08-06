@@ -68,7 +68,7 @@ const MainSlice = createSlice({
         // delete banner 
         deleteBanner: (state, action) => {
             const bannerIndex = state.banners.findIndex(b => b._id.toString() === action.payload._id.toString());
-            state.banners.splice(bannerIndex)
+            state.banners.splice(bannerIndex, 1)
         },
         // add/update banners 
         addOrUpdateCategory: (state, action) => {
@@ -84,7 +84,7 @@ const MainSlice = createSlice({
         // delete banner 
         deleteCategory: (state, action) => {
             const categoryIndex = state.categories.findIndex(b => b._id.toString() === action.payload._id.toString());
-            state.banners.splice(categoryIndex)
+            state.banners.splice(categoryIndex, 1)
         }
     },
     extraReducers: builder => {
